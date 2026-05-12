@@ -4,13 +4,12 @@
 #
 
 #Hyprland things
-hyprland 
 hyprpaper
 hyprlauncher
 hyprtoolkit
 hyprutils
 hyprwayland-scanner
-hyprwayland-guiutils
+#hyprwayland-guiutils
 hyprwire
 xcb-util-errors
 aquamarine
@@ -20,6 +19,7 @@ muparser
 pugixml
 seatd
 wayland-protocols
+hyprland 
 
 alsa-utils
 amd-ucode
@@ -473,6 +473,6 @@ ckbcomp
 mkinitcpio-openswap
 
 # AUR
-downgrade
-trizen
+#downgrade
+#trizen
 

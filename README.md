@@ -10,3 +10,6 @@
 * adding plymouth theme (adding plymouth to mkinitcpio.conf hooks{} portion)
 ## finding dot files
 * finding good dot files to use see [nyarch wiki](https://github.com/NyarchLinux/NyarchWiki/blob/master/docs/future_projects.md#hyprland-spin) for more info
+
+# Errors/Issues
+* mkarchiso refuses to download `hyprland` & `hyprwayland-guiutils` 
