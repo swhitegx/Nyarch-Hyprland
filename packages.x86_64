@@ -2,6 +2,25 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 # Ezarcher custom package list
 #
+
+#Hyprland things
+hyprland 
+hyprpaper
+hyprlauncher
+hyprtoolkit
+hyprutils
+hyprwayland-scanner
+hyprwayland-guiutils
+hyprwire
+xcb-util-errors
+aquamarine
+hyprcursor
+hyprgraphics
+muparser
+pugixml
+seatd
+wayland-protocols
+
 alsa-utils
 amd-ucode
 arch-install-scripts
@@ -457,20 +476,3 @@ mkinitcpio-openswap
 downgrade
 trizen
 
-#Hyprland things
-hyprland 
-hyprpaper
-hyprlauncher
-hyprtoolkit
-hyprutils
-hyprwayland-scanner
-hyprwayland-guiutils
-hyprwire
-xcb-util-errors
-aquamarine
-hyprcursor
-hyprgraphics
-muparser
-pugixml
-seatd
-wayland-protocols
