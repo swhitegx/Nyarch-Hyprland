@@ -461,3 +461,16 @@ trizen
 hyprland 
 hyprpaper
 hyprlauncher
+hyprtoolkit
+hyprutils
+hyprwayland-scanner
+hyprwayland-guiutils
+hyprwire
+xcb-util-errors
+aquamarine
+hyprcursor
+hyprgraphics
+muparser
+pugixml
+seatd
+wayland-protocols
