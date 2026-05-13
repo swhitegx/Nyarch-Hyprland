@@ -9,7 +9,7 @@ hyprlauncher
 hyprtoolkit
 hyprutils
 hyprwayland-scanner
-#hyprwayland-guiutils
+hyprwayland-guiutils
 hyprwire
 xcb-util-errors
 aquamarine
