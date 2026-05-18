@@ -32,7 +32,7 @@ mkdir -p "$WORK_DIR" "$OUT_DIR"
 # Copy base archiso profile
 # ==============================================================================
 info "Copying archiso releng profile..."
-cp -r ~/Desktop/work/NyarchHyprland/ezreleng "$WORK_DIR/"
+cp -r /home/dio/Desktop/Work/NyarchHyprland/releng "$WORK_DIR/"
 chmod u+w "$PROFILE_DIR/profiledef.sh"
 
 # ==============================================================================
