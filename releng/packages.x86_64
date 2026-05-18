@@ -449,3 +449,14 @@ mkinitcpio-openswap
 #downgrade
 #trizen
 
+# Nyarch Specifics
+nyarch-keyring
+nyarch-mirrorlist
+python313
+nekoplay
+nyarchassistant
+nyarchcustomize
+nyarchscript
+nyarchtour
+nyarchupdater
+nyarchwizard
