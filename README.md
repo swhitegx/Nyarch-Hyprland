@@ -1,5 +1,6 @@
 # Nyarch Hyprland
-  Draking it up w/ the ghost writers here
+Draking it up w/ the ghost writers here
+^ NOT ANYMORE, DOING IT MYSELF
 
 # To Do
 ## Add packages/add hyprland
@@ -11,5 +12,7 @@
 ## finding dot files
 * finding good dot files to use see [nyarch wiki](https://github.com/NyarchLinux/NyarchWiki/blob/master/docs/future_projects.md#hyprland-spin) for more info
 
-# Errors/Issues
-* mkarchiso refuses to download `hyprland` & `hyprwayland-guiutils` 
+## Edit `steps.sh` to mimic `hyprlandbs.sh`
+* hyprlandbs.sh is known to work and provide a hyprland enviroment. We need to study how it is different.
+* hyprlandbs.sh seems to just `cat` a bunch of things into it's work directory
+* hyprlandbs.sh copies ezreleng into its working dir, not planned but useful.
