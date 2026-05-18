@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
-
-# BIG FUCKING THANKS TO @Michael91 IN THE OMARCHY DISCORD IF THIS WORKS I LOVE YOU FOREVER
-# originally in https://github.com/nightdevil00/LinuxScripts/tree/main/ISO_Build/Hyprland-ISO
-# edited by nyarch develowoper TotallyDIO the absolute genius (applause applause) to make nyarch hyprland
 # ==============================================================================
 # Custom Arch ISO Builder - Hyprland Live Environment
 # Packages: fuzzel, nautilus, chromium, kitty, hyprland, gedit,
@@ -32,8 +28,83 @@ mkdir -p "$WORK_DIR" "$OUT_DIR"
 # Copy base archiso profile
 # ==============================================================================
 info "Copying archiso releng profile..."
-cp -r ~/Desktop/work/NyarchHyprland/ezreleng "$WORK_DIR/"
+cp -r /usr/share/archiso/configs/releng "$WORK_DIR/"
 chmod u+w "$PROFILE_DIR/profiledef.sh"
+
+# ==============================================================================
+# Package list
+# ==============================================================================
+info "Configuring package list..."
+cat >> "$PROFILE_DIR/packages.x86_64" <<'PKGEOF'
+
+# Display Manager
+sddm
+qt5-wayland
+qt6-wayland
+
+# Wayland Compositor
+hyprland
+xdg-desktop-portal-hyprland
+
+# Essential Wayland
+wayland
+wayland-protocols
+xorg-xwayland
+
+# Terminal
+kitty
+
+# Application Launcher
+fuzzel
+
+# File Manager
+nautilus
+gnome-themes-extra
+
+# Browser
+chromium
+
+# Text Editor
+gedit
+
+# Disk Utility
+gnome-disk-utility
+
+# Status Bar
+waybar
+
+# Audio
+pipewire
+pipewire-alsa
+pipewire-pulse
+wireplumber
+pavucontrol
+
+# Network
+networkmanager
+network-manager-applet
+
+# Fonts
+noto-fonts
+noto-fonts-emoji
+ttf-dejavu
+ttf-liberation
+ttf-nerd-fonts-symbols
+
+# Tools
+bash-completion
+git
+curl
+wget
+vim
+nano
+htop
+btop
+polkit-gnome
+gnome-keyring
+libnotify
+
+PKGEOF
 
 # ==============================================================================
 # Airootfs structure
@@ -407,4 +478,3 @@ if [[ -n "$ISO_FILE" ]]; then
 else
     error "ISO file not found in $OUT_DIR"
 fi
-
