@@ -21,7 +21,7 @@ warn() { echo -e "${C_YELLOW}[WARNING]${C_RESET} $1"; }
 [[ $EUID -eq 0 ]] || error "This script must be run as root"
 
 WORK_DIR="$(pwd)/archiso-work"
-PROFILE_DIR="$WORK_DIR/releng"
+PROFILE_DIR="$WORK_DIR/ezreleng"
 OUT_DIR="$(pwd)/out"
 AIROOTFS="$PROFILE_DIR/airootfs"
 
@@ -32,7 +32,7 @@ mkdir -p "$WORK_DIR" "$OUT_DIR"
 # Copy base archiso profile
 # ==============================================================================
 info "Copying archiso releng profile..."
-cp -r /home/dio/Desktop/Work/NyarchHyprland/releng "$WORK_DIR/"
+cp -r /home/dio/Desktop/Work/NyarchHyprland/ezreleng "$WORK_DIR/"
 chmod u+w "$PROFILE_DIR/profiledef.sh"
 
 # ==============================================================================
