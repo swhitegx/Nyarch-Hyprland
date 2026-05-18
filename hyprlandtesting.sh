@@ -144,7 +144,7 @@ general {
 
 $mainMod = SUPER
 bind = $mainMod, SPACE, exec, fuzzel
-bind = $mainMod, RETURN, exec, kitty
+bind = $mainMod, T, exec, kitty
 bind = $mainMod, F, exec, nautilus
 bind = $mainMod, B, exec, chromium
 bind = $mainMod, D, exec, gnome-disks
