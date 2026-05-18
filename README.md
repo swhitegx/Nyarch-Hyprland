@@ -12,8 +12,8 @@ Draking it up w/ the ghost writers here
 ## finding dot files
 * finding good dot files to use see [nyarch wiki](https://github.com/NyarchLinux/NyarchWiki/blob/master/docs/future_projects.md#hyprland-spin) for more info
 
-## Edit `steps.sh` to mimic `hyprlandbs.sh`
-* hyprlandinstalldefault.sh is known to work and provide a hyprland enviroment. We need to study how it is different, may switch default iso builder to hyprlandtesting.sh/make a stable shell script to use.
-* hyprlandinstalldefault.sh usually `cat`s stuff to the end of files mentioned. hyprland testing doenst do this since i can edit releng/ directly.
+## Edit `steps.sh` to mimic `hyprlandtesting.sh`
+* hyprlanddefault.sh is not to be changed
+* hyprlanddefault.sh copies /usr/share/archisox
 * hyprlandtesting.sh now copied from the releng mentioned in .gitignore. i will undo that when its finished.
-* when hyprlandbs.sh builds an iso, it uses systemd-boot instead of grub.
+* when either scripts builds an iso, it uses systemd-boot instead of grub.
