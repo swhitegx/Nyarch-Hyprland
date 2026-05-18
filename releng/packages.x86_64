@@ -31,6 +31,7 @@ btop
 polkit-gnome
 gnome-keyring
 libnotify
+waybar
 
 alsa-utils
 amd-ucode
@@ -409,44 +410,6 @@ python-pip
 python-reportlab
 simple-scan
 system-config-printer
-
-# KDE
-abiword
-accountsservice
-aisleriot
-archlinux-appstream-data
-ark
-audiocd-kio
-bluedevil
-breeze-gtk
-breeze-icons
-discover
-dolphin
-fastfetch
-flatpak-kcm
-geany
-gnumeric
-guvcview
-gwenview
-k3b
-kcalc
-kate
-libvlc
-meld
-mpv
-okular
-oxygen
-packagekit
-papirus-icon-theme
-powerdevil
-print-manager
-qbittorrent
-smplayer
-sweeper
-xsettingsd
-
-# Display Manager
-plasma-login-manager
 
 # Calamares make dependencies
 dmidecode
