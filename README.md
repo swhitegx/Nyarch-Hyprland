@@ -18,5 +18,7 @@ Draking it up w/ the ghost writers here
 * hyprlandtesting.sh now copied from the releng mentioned in .gitignore. i will undo that when its finished.
 * when either scripts builds an iso, it uses systemd-boot instead of grub.
 
-**NOTE**: figure out how to add nyarch keyring without setting nyarch-repo's trust lvl to Never
+**Pretty Important**: 
+figure out how to add nyarch keyring without setting nyarch-repo's trust lvl to Never
     the pacman.conf at releng/ has the Siglevel to "Never"
+@ /ezreleng/grub.cfg: disabled the beeping
