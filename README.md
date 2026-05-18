@@ -16,3 +16,4 @@ Draking it up w/ the ghost writers here
 * hyprlandbs.sh is known to work and provide a hyprland enviroment. We need to study how it is different.
 * hyprlandbs.sh seems to just `cat` a bunch of things into it's copy of releng
 * hyprlandbs.sh copies /usr/share/archiso/configs/releng into archiso-work/
+* when hyprlandbs.sh builds an iso, it uses systemd-boot instead of grub.
