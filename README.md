@@ -14,5 +14,5 @@ Draking it up w/ the ghost writers here
 
 ## Edit `steps.sh` to mimic `hyprlandbs.sh`
 * hyprlandbs.sh is known to work and provide a hyprland enviroment. We need to study how it is different.
-* hyprlandbs.sh seems to just `cat` a bunch of things into it's work directory
-* hyprlandbs.sh copies ezreleng into its working dir, not planned but useful.
+* hyprlandbs.sh seems to just `cat` a bunch of things into it's copy of releng
+* hyprlandbs.sh copies /usr/share/archiso/configs/releng into archiso-work/
