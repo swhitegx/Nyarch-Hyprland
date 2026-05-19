@@ -20,6 +20,12 @@ RTPASSWD="toor"
 MYHOSTNM="ezarcher"
 # Pick a hostname for the machine
 
+PROFILE_DIR="$(pwd)/ezreleng"
+# releng profile
+
+AIROOTFS="$PROFILE_DIR/airootfs"
+# airootfs directory
+
 # ----------------------------------------
 # Functions
 # ----------------------------------------
@@ -216,6 +222,7 @@ cpezreleng
 addnmlinks
 cpezrepo
 rmunitsd
+services
 cpmyfiles
 sethostname
 crtpasswd

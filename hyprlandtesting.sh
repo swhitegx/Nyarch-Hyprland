@@ -89,7 +89,7 @@ cat > "$AIROOTFS/etc/skel/.local/share/applications/InstallArch.desktop" <<'DESK
 [Desktop Entry]
 Name=Install Arch Linux
 Comment=Install Arch Linux to your system (offline/online/repair)
-Exec=pkexec calamares
+Exec= sudo -E calamares
 Icon=calamares
 Terminal=false
 Type=Application
