@@ -3,6 +3,17 @@
 # Ezarcher custom package list
 #
 
+# Nyarch things
+nyarch-keyring
+nyarch-mirrorlist
+nyarchassistant
+nekoplay
+nyarchscript
+nyarchcustomize
+nyarchtour
+nyarchupdater
+nyarchwizard
+
 #Hyprland things
 hyprpaper
 hyprlauncher
