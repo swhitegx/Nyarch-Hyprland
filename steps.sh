@@ -132,6 +132,19 @@ crtpasswd () {
 echo "root:x:0:0:root:/root:/usr/bin/bash
 "${MYUSERNM}":x:1010:1010::/home/"${MYUSERNM}":/usr/bin/bash" > ./ezreleng/airootfs/etc/passwd
 }
+# enabling services
+services () {
+info "Enabling services..."
+mkdir -p "$AIROOTFS/etc/systemd/system/multi-user.target.wants"
+mkdir -p "$AIROOTFS/etc/systemd/system/graphical.target.wants"
+
+ln -sf /usr/lib/systemd/system/sddm.service \
+    "$AIROOTFS/etc/systemd/system/display-manager.service"
+ln -sf /usr/lib/systemd/system/NetworkManager.service \
+    "$AIROOTFS/etc/systemd/system/multi-user.target.wants/NetworkManager.service"
+ln -sf /usr/lib/systemd/system/graphical.target \
+    "$AIROOTFS/etc/systemd/system/default.target"
+}
 
 # Create group file
 crtgroup () {
