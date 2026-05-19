@@ -20,27 +20,7 @@ warn() { echo -e "${C_YELLOW}[WARNING]${C_RESET} $1"; }
 
 [[ $EUID -eq 0 ]] || error "This script must be run as root"
 
-# Cleans up anything old
-[[ -d ./ezreleng ]] && rm -r ./ezreleng
-[[ -d ./work ]] && rm -rf ./work
-[[ -d ./out ]] && rm -rf ./out
-sleep 2
-
-# copies to ezreleng
-cp -r /usr/share/archiso/configs/releng/ ./ezreleng
-cp pacman.conf ./ezreleng/
-cp profiledef.sh ./ezreleng/
-cp packages.x86_64 ./ezreleng/
-cp -r grub/ ./ezreleng/
-cp -r efiboot/ ./ezreleng/
-cp -r syslinux/ ./ezreleng/
-cp -r etc/ ./ezreleng/airootfs/
-cp -r opt/ ./ezreleng/airootfs/
-cp -r usr/ ./ezreleng/airootfs/
-mkdir -p ./ezreleng/airootfs/etc/skel
-ln -sf /usr/share/ezarcher ./ezreleng/airootfs/etc/skel/ezarcher
-
-WORK_DIR="$(pwd)/work"
+WORK_DIR="$(pwd)/archiso-work"
 PROFILE_DIR="$WORK_DIR/ezreleng"
 OUT_DIR="$(pwd)/out"
 AIROOTFS="$PROFILE_DIR/airootfs"
@@ -52,7 +32,7 @@ mkdir -p "$WORK_DIR" "$OUT_DIR"
 # Copy base archiso profile
 # ==============================================================================
 info "Copying archiso releng profile..."
-cp -r ./ezreleng "$WORK_DIR/"
+cp -r /home/dio/Desktop/Work/NyarchHyprland/ezreleng "$WORK_DIR/"
 chmod u+w "$PROFILE_DIR/profiledef.sh"
 
 # ==============================================================================

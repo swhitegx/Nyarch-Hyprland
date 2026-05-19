@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC2034
 
-iso_name="nyarch-hyprland"
-iso_label="NYARCH-HYPRLAND_$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%y%m%d)"
+iso_name="Nyarch-Hyprland"
+iso_label="NYARCH-HYPRLAND_$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%y%m)"
 iso_publisher="Nyarch Linux <https://nyarchlinux.moe>"
-iso_application="NyarchLinux DVD"
-iso_version="$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%y%m%d)"
+iso_application="Nyarch DVD"
+iso_version="$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%y%m)"
 install_dir="arch"
 buildmodes=('iso')
 bootmodes=('bios.syslinux'
@@ -25,11 +25,6 @@ file_permissions=(
   ["/usr/local/bin/livecd-sound"]="0:0:755"
   ["/usr/local/bin/ezmaint"]="0:0:755"
   ["/usr/local/bin/grubinstall.sh"]="0:0:755"
-  ["/usr/local/bin/nyarch.bios"]="0:0:755"
-  ["/usr/local/bin/nyarch.uefi"]="0:0:755"
-  ["/usr/local/bin/nekofetch"]="0:0:755"
-  ["/usr/local/bin/nyaofetch"]="0:0:755"
-  ["/usr/local/bin/nyay"]="0:0:755"
-  ["/usr/share/nyarcher/Scripts/autostart.sh"]="0:0:755"
-  ["/usr/share/nyarcher/Scripts/cheange_wallpaper.sh"]="0:0:755"
+  ["/usr/local/bin/ezarch.bios"]="0:0:755"
+  ["/usr/local/bin/ezarch.uefi"]="0:0:755"
 )
