@@ -82,7 +82,7 @@ ldns
 less
 libfido2
 libusb-compat
-linux-lts
+linux
 linux-atm
 linux-firmware
 linux-firmware-marvell
@@ -205,7 +205,7 @@ libburn
 libisofs
 libisoburn
 libblockdev
-linux-lts-headers
+linux-headers
 logrotate
 lsb-release
 lsof
