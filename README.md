@@ -24,3 +24,5 @@ Draking it up w/ the ghost writers here NOTE: NOT ANYMORE, DOING IT MYSELF
 figure out how to add nyarch keyring without setting nyarch-repo's trust lvl to Never
     the pacman.conf at releng/ has the Siglevel to "Never"
 @ /grub/grub.cfg: disabled the beeping
+
+steps.sh is currently able to build but finding some issues

@@ -27,4 +27,12 @@ file_permissions=(
   ["/usr/local/bin/grubinstall.sh"]="0:0:755"
   ["/usr/local/bin/ezarch.bios"]="0:0:755"
   ["/usr/local/bin/ezarch.uefi"]="0:0:755"
+  ["/root/customize_airootfs.sh"]="0:0:755"
+  ["/etc/skel/arch_install.sh"]="0:0:755"
 )
+
+customize_airootfs() {
+    if [ -f "${airootfs_dir}/root/customize_airootfs.sh" ]; then
+        arch-chroot "${airootfs_dir}" /root/customize_airootfs.sh
+    fi
+}

@@ -132,6 +132,16 @@ ln -sf /usr/share/ezarcher ./ezreleng/airootfs/etc/skel/ezarcher
 sethostname () {
 echo "${MYHOSTNM}" > ./ezreleng/airootfs/etc/hostname
 }
+# Copy arch_install.sh to /etc/skel/
+archscript () {
+  SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+if [[ -f "$SCRIPT_DIR/../Arch_Install/arch_install.sh" ]]; then
+    cp "$SCRIPT_DIR/../Arch_Install/arch_install.sh" "$AIROOTFS/etc/skel/"
+else
+    warn "arch_install.sh not found at $SCRIPT_DIR/../Arch_Install/arch_install.sh"
+    warn "ISO will build without the install script (add it later to /etc/skel/)"
+fi
+}
 
 # Create passwd file
 crtpasswd () {
@@ -226,6 +236,8 @@ services
 cpmyfiles
 sethostname
 crtpasswd
+archscript
+
 crtgroup
 crtshadow
 crtgshadow
