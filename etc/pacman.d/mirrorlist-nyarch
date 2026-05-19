@@ -1,3 +1,0 @@
-Server = https://de-pkgmirror.nyarchlinux.moe/$arch/
-Server = http://nymirror.nyarchlinux.moe/pub/linux/nyarch/
-Server = https://mousecorp.xyz/pub/linux/nyarch/packages/$arch/

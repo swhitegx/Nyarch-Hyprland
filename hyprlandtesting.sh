@@ -21,7 +21,8 @@ warn() { echo -e "${C_YELLOW}[WARNING]${C_RESET} $1"; }
 [[ $EUID -eq 0 ]] || error "This script must be run as root"
 
 # Cleans up anything old
-[[ -d ./ezreleng ]] && rm -r ./ezreleng[[ -d ./work ]] && rm -rf ./work
+[[ -d ./ezreleng ]] && rm -r ./ezreleng
+[[ -d ./work ]] && rm -rf ./work
 [[ -d ./out ]] && rm -rf ./out
 sleep 2
 
