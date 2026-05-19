@@ -43,6 +43,7 @@ gnome-keyring
 libnotify
 dolphin
 sddm
+kitty
 
 alsa-utils
 amd-ucode
@@ -198,6 +199,7 @@ fwupd
 gdb
 git
 gnome-disk-utility
+gnome-disks
 gnome-keyring
 gocryptfs
 gparted
