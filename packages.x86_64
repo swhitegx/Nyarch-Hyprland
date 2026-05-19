@@ -460,6 +460,7 @@ yaml-cpp
 calamares
 ckbcomp
 mkinitcpio-openswap
+python313
 
 # AUR
 #downgrade
