@@ -22,8 +22,8 @@ warn() { echo -e "${C_YELLOW}[WARNING]${C_RESET} $1"; }
 
 # Cleans up anything old
 [[ -d ./ezreleng ]] && rm -r ./ezreleng
-[[ -d ./work ]] && rm -r ./work
-[[ -d ./out ]] && mv ./out ../
+[[ -d ./work ]] && rm -rf ./work
+[[ -d ./out ]] && rm -rf ./out
 sleep 2
 
 # copies to ezreleng
