@@ -81,55 +81,6 @@ ln -sf /usr/lib/systemd/system/graphical.target \
     "$AIROOTFS/etc/systemd/system/default.target"
 
 # ==============================================================================
-# Fuzzel config
-# ==============================================================================
-cat > "$AIROOTFS/etc/skel/.config/fuzzel/fuzzel.ini" <<'FUZZELEOF'
-[main]
-terminal=kitty
-layer=overlay
-width=50
-
-[colors]
-background=1e1e2edd
-text=cdd6f4ff
-match=89b4faff
-selection=313244ff
-selection-text=cdd6f4ff
-border=89b4faff
-
-[border]
-width=2
-radius=8
-FUZZELEOF
-
-# ==============================================================================
-# Waybar config
-# ==============================================================================
-info "Copying Waybar config..."
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-if [[ -f "$SCRIPT_DIR/.config/waybar/config.jsonc" ]]; then
-    cp "$SCRIPT_DIR/.config/waybar/config.jsonc" "$AIROOTFS/etc/skel/.config/waybar/"
-    cp "$SCRIPT_DIR/.config/waybar/style.css" "$AIROOTFS/etc/skel/.config/waybar/" 2>/dev/null || true
-else
-    warn "waybar config not found, creating default..."
-    cat > "$AIROOTFS/etc/skel/.config/waybar/config.jsonc" <<'WAYBAREOF'
-{
-    "layer": "top",
-    "height": 30,
-    "spacing": 4,
-    "modules-left": ["custom/installer", "hyprland/workspaces"],
-    "modules-center": ["hyprland/window"],
-    "modules-right": ["pulseaudio", "network", "cpu", "memory", "clock", "tray"],
-    "custom/installer": {
-        "format": "  Install Arch  ",
-        "on-click": "kitty -e sudo /home/live/arch_install.sh",
-        "tooltip": false
-    }
-}
-WAYBAREOF
-fi
-
-# ==============================================================================
 # Desktop entry and icon for installer
 # ==============================================================================
 info "Creating desktop entry and icon for Arch Installer..."
@@ -137,29 +88,12 @@ cat > "$AIROOTFS/etc/skel/.local/share/applications/InstallArch.desktop" <<'DESK
 [Desktop Entry]
 Name=Install Arch Linux
 Comment=Install Arch Linux to your system (offline/online/repair)
-Exec=kitty -e sudo /home/live/arch_install.sh
-Icon=system-software-install
+Exec=pkexec calamares
+Icon=calamares
 Terminal=false
 Type=Application
 Categories=System;
 DESKTOPDF
-
-cat > "$AIROOTFS/etc/skel/.local/share/icons/hicolor/scalable/apps/system-software-install.svg" <<'ICONEOF'
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <rect x="20" y="10" width="88" height="108" rx="8" fill="#1793d1"/>
-  <rect x="30" y="30" width="68" height="8" rx="2" fill="#ffffff" opacity="0.9"/>
-  <rect x="30" y="46" width="68" height="8" rx="2" fill="#ffffff" opacity="0.9"/>
-  <rect x="30" y="62" width="48" height="8" rx="2" fill="#ffffff" opacity="0.9"/>
-  <polygon points="64,82 80,98 48,98" fill="#2ecc71"/>
-</svg>
-ICONEOF
-
-# Ensure icon cache is updated
-cat > "$AIROOTFS/etc/skel/.local/share/icons/hicolor/scalable/apps/index.theme" <<'THEMEEOF'
-[Icon Theme]
-Name=hicolor
-Comment=Fallback icon theme
-THEMEEOF
 
 # ==============================================================================
 # User setup script (runs during build in airootfs chroot)
