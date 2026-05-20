@@ -18,6 +18,5 @@ Draking it up w/ the ghost writers here NOTE: NOT ANYMORE, DOING IT MYSELF
 * when either scripts builds an iso, it uses systemd-boot instead of grub.
 
 **Pretty Important**:
-figure out how to add nyarch keyring without setting nyarch-repo's trust lvl to Never
-    the pacman.conf at releng/ has the Siglevel to "Never"
+@ /etc/pacman.conf: the Siglevel to "Never" due to gpg error when downloading nyarch-keyring
 @ /grub/grub.cfg: disabled the beeping
