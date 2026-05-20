@@ -21,38 +21,39 @@ warn() { echo -e "${C_YELLOW}[WARNING]${C_RESET} $1"; }
 [[ $EUID -eq 0 ]] || error "This script must be run as root"
 
 # Cleans up anything old
-[[ -d ./ezreleng ]] && rm -r ./ezreleng
+[[ -d ./ezreleng ]] && rm -rf ezreleng
 [[ -d ./work ]] && rm -rf ./work
 [[ -d ./out ]] && rm -rf ./out
 sleep 2
 
-# copies to ezreleng
-cp -r /usr/share/archiso/configs/releng/ ./ezreleng
-cp pacman.conf ./ezreleng/
-cp profiledef.sh ./ezreleng/
-cp packages.x86_64 ./ezreleng/
-cp -r grub/ ./ezreleng/
-cp -r efiboot/ ./ezreleng/
-cp -r syslinux/ ./ezreleng/
-cp -r etc/ ./ezreleng/airootfs/
-cp -r opt/ ./ezreleng/airootfs/
-cp -r usr/ ./ezreleng/airootfs/
-mkdir -p ./ezreleng/airootfs/etc/skel
-ln -sf /usr/share/ezarcher ./ezreleng/airootfs/etc/skel/ezarcher
 
 WORK_DIR="$(pwd)/work"
-PROFILE_DIR="$WORK_DIR/ezreleng"
+PROFILE_DIR="$(pwd)/ezreleng"
 OUT_DIR="$(pwd)/out"
 AIROOTFS="$PROFILE_DIR/airootfs"
 
 mkdir -p "$WORK_DIR" "$OUT_DIR"
 [[ -d "$PROFILE_DIR" ]] && rm -rf "$PROFILE_DIR"
 
+# copies to ezreleng
+cp -rf /usr/share/archiso/configs/releng/ ./ezreleng
+cp pacman.conf ./ezreleng/
+cp profiledef.sh ./ezreleng/
+cp packages.x86_64 ./ezreleng/
+cp -rf grub/ ./ezreleng/
+cp -rf efiboot/ ./ezreleng/
+cp -rf syslinux/ ./ezreleng/
+cp -rf etc/ ./ezreleng/airootfs/
+cp -rf opt/ ./ezreleng/airootfs/
+cp -rf usr/ ./ezreleng/airootfs/
+mkdir -p ./ezreleng/airootfs/etc/skel
+ln -sf /usr/share/ezarcher ./ezreleng/airootfs/etc/skel/ezarcher
+
 # ==============================================================================
 # Copy base archiso profile
 # ==============================================================================
 info "Copying archiso releng profile..."
-cp -r ./ezreleng "$WORK_DIR/"
+cp -rf ezreleng "$WORK_DIR/"
 chmod u+w "$PROFILE_DIR/profiledef.sh"
 
 # ==============================================================================
@@ -138,25 +139,6 @@ else
     warn "arch_install.sh not found at $SCRIPT_DIR/../Arch_Install/arch_install.sh"
     warn "ISO will build without the install script (add it later to /etc/skel/)"
 fi
-
-# ==============================================================================
-# Modify profiledef.sh to call our setup
-# ==============================================================================
-cat >> "$PROFILE_DIR/profiledef.sh" <<'PROFILEDEF_EOF'
-
-file_permissions+=(
-  ["/etc/shadow"]="0:0:400"
-  ["/etc/gshadow"]="0:0:400"
-  ["/root/customize_airootfs.sh"]="0:0:755"
-  ["/etc/skel/arch_install.sh"]="0:0:755"
-)
-
-customize_airootfs() {
-    if [ -f "${airootfs_dir}/root/customize_airootfs.sh" ]; then
-        arch-chroot "${airootfs_dir}" /root/customize_airootfs.sh
-    fi
-}
-PROFILEDEF_EOF
 
 # ==============================================================================
 # Ask about offline installation packages
