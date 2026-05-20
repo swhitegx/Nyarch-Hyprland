@@ -26,4 +26,4 @@ steps.sh is currently able to build but finding some issues
 
 **Found Issues**
 When building an iso as of 5/19: gray screen after loading grub
-* idea: sddm not loadings
+* idea: hyprland config issue, running `hyprland --safe-mode` in a different tty boots correctly.
