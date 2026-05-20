@@ -20,3 +20,5 @@ Draking it up w/ the ghost writers here NOTE: NOT ANYMORE, DOING IT MYSELF
 **Pretty Important**:
 @ /etc/pacman.conf: the Siglevel to "Never" due to gpg error when downloading nyarch-keyring
 @ /grub/grub.cfg: disabled the beeping
+error when using end-4 dot files.
+    leads to gray screen. Not sddm or grub issue.
