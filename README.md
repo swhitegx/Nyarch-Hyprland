@@ -22,3 +22,4 @@ Draking it up w/ the ghost writers here NOTE: NOT ANYMORE, DOING IT MYSELF
 @ /grub/grub.cfg: disabled the beeping
 error when using end-4 dot files.
     leads to gray screen. Not sddm or grub issue.
+a
