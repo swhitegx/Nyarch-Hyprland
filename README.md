@@ -17,12 +17,13 @@ Draking it up w/ the ghost writers here NOTE: NOT ANYMORE, DOING IT MYSELF
 * hyprlandtesting.sh now copied from the releng mentioned in .gitignore. i will undo that when its finished.
 * when either scripts builds an iso, it uses systemd-boot instead of grub.
 
-## QT6 Error
-* xcb-utils error
-
 **Pretty Important**:
 figure out how to add nyarch keyring without setting nyarch-repo's trust lvl to Never
     the pacman.conf at releng/ has the Siglevel to "Never"
 @ /grub/grub.cfg: disabled the beeping
 
 steps.sh is currently able to build but finding some issues
+
+**Found Issues**
+When building an iso as of 5/19: gray screen after loading grub
+* idea: sddm not loadings
