@@ -46,6 +46,9 @@ libnotify
 dolphin
 sddm
 kitty
+breeze
+breeze-gtk
+breeze-icons
 
 alsa-utils
 amd-ucode

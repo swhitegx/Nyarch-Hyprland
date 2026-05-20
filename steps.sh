@@ -17,7 +17,7 @@ MYUSRPASSWD="live"
 RTPASSWD="toor"
 # Pick a root password
 
-MYHOSTNM="ezarcher"
+MYHOSTNM="nyarch"
 # Pick a hostname for the machine
 
 PROFILE_DIR="$(pwd)/ezreleng"
