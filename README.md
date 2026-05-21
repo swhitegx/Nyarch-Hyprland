@@ -2,6 +2,11 @@
 Draking it up w/ the ghost writers here NOTE: NOT ANYMORE, DOING IT MYSELF
 
 # To Do
+## Make apps auto open
+* make calamares open on iso boot
+* make nyarch tour boot on first os boot
+## make the nyarch tour open in the middle
+* figure out how to make nyarch tour open in the middle like usual. 
 ## Add pictures, grub theming, plymouth etc
 * figuring out how to enable the wallpaper via hyprpaper - easy
 * adding plymouth theme (adding plymouth to mkinitcpio.conf hooks{} portion) - easy
