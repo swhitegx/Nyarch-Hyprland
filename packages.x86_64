@@ -46,6 +46,7 @@ gnome-keyring
 libnotify
 dolphin
 sddm
+sddm-kcm
 kitty
 breeze
 breeze-gtk
