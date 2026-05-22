@@ -24,6 +24,5 @@ Draking it up w/ the ghost writers here NOTE: NOT ANYMORE, DOING IT MYSELF
 @ /grub/grub.cfg: disabled the beeping
 error when using end-4 dot files.
     leads to gray screen. Not sddm or grub issue.
-
-* line 45 of hyprland.lua, invalid syntax near 'hl'
+@ line 45 of hyprland.lua, invalid syntax near 'hl'
     no idea what the issue is here, will try to ask a lua professional to help.
