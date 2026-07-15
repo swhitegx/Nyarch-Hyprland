@@ -31,7 +31,7 @@ hl.monitor({
 local terminal    = "kitty"
 local fileManager = "dolphin"
 local menu        = "hyprlauncher"
-local installer   = sudo -E calamares
+local installer   = "sudo -E calamares"
 
 -------------------
 ---- AUTOSTART ----
@@ -43,9 +43,10 @@ local installer   = sudo -E calamares
 -- Or execute your favorite apps at launch like this:
 --
 hl.on("hyprland.start", function () 
-   hl.exec_cmd("waybar & hyprpaper" installer)
-   hl.exec_cmd("nm-applet")
-   hl.exec_cmd("waybar & hyprpaper & firefox")
+   hl.exec_cmd("waybar & hyprpaper")
+   hl.exec_cmd("nm-applet --indicator")
+   hl.exec_cmd("firefox")
+   hl.exec_cmd(installer)
 end)
 
 
@@ -360,10 +361,10 @@ hl.window_rule({
   match = {
     class = "calamares"
   },
-  border_size = 10
-  fullscreen = false
-  float = true 
-  modal = true
-  move = {"window_w * 0.5", "(monitor_h / 2) + 17"}
+  border_size = 10,
+  fullscreen = false,
+  float = true,
+  modal = true,
+  move = {"window_w * 0.5", "(monitor_h / 2) + 17"},
   size = {"monitor_w * 0.5", "monitor_h * 0.5"}
 })
