@@ -1,7 +1,6 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 # Ezarcher custom package list
-#
 
 # Nyarch things
 nyarch-keyring
@@ -14,7 +13,6 @@ nyarchtour
 nyarchupdater
 nyarchwizard
 catgirldownloader
-
 #Hyprland things
 hyprpaper
 hyprlauncher
@@ -51,7 +49,36 @@ kitty
 breeze
 breeze-gtk
 breeze-icons
-
+# Illogical-Impulse / dotfiles dependencies
+foot
+alacritty
+fuzzel
+grim
+slurp
+hyprpicker
+wl-clipboard
+cliphist
+tesseract
+tesseract-data-eng
+playerctl
+brightnessctl
+easyeffects
+fish
+starship
+eza
+otf-font-awesome
+ttf-jetbrains-mono-nerd
+xdg-desktop-portal-hyprland
+hypridle
+hyprlock
+hyprshot
+qt6-multimedia
+qt6-multimedia-ffmpeg
+qt6-5compat
+qt6-shadertools
+qt6-serialport
+qt6-wayland
+qt6-websockets
 alsa-utils
 amd-ucode
 arch-install-scripts
@@ -123,7 +150,6 @@ mkinitcpio-archiso
 mkinitcpio-nfs-utils
 modemmanager
 mtools
-nano
 nbd
 ndisc6
 nfs-utils
@@ -167,7 +193,6 @@ udftools
 usb_modeswitch
 usbmuxd
 usbutils
-vim
 virtualbox-guest-utils
 vpnc
 wireless-regdb
@@ -177,14 +202,12 @@ wvdial
 xfsprogs
 xl2tpd
 zsh
-
 # System
 archiso
 archlinux-contrib
 aspell
 aspell-en
 base-devel
-bash-completion
 binutils
 bluez
 bluez-utils
@@ -204,15 +227,12 @@ flatpak
 fuse3
 fwupd
 gdb
-git
 gnome-disk-utility
-gnome-keyring
 gocryptfs
 gparted
 grsync
 haveged
 hspell
-htop
 hunspell
 hunspell-en_us
 hwdata
@@ -253,12 +273,10 @@ sdl12-compat
 sdl2
 timeshift
 tlp
-udftools
 udisks2
 upower
 xdg-user-dirs
 xdg-utils
-
 # Compression
 bzip2
 gzip
@@ -276,7 +294,6 @@ unzip
 xz
 zip
 zstd
-
 # Filesystem
 gvfs
 gvfs-afc
@@ -285,12 +302,10 @@ gvfs-gphoto2
 gvfs-mtp
 gvfs-nfs
 gvfs-smb
-
 # Multimedia
 alsa-lib
 alsa-plugins
 alsa-firmware
-alsa-utils
 audacious
 audacious-plugins
 cdrdao
@@ -339,7 +354,6 @@ x264
 xvidcore
 yt-dlp
 yt-dlp-ejs
-
 # Xorg, Vulkan, & Wayland
 mesa
 vulkan-headers
@@ -377,12 +391,9 @@ xorg-xhost
 xorg-xinit
 xorg-xwayland
 xterm
-
 # Networking
 avahi
-curl
 dnsutils
-ethtool
 filezilla
 firefox
 inetutils
@@ -397,9 +408,7 @@ nm-connection-editor
 nss-mdns
 openbsd-netcat
 openresolv
-wget
 whois
-
 # Fonts
 ttf-dejavu
 ttf-liberation
@@ -413,7 +422,6 @@ noto-fonts
 opendesktop-fonts
 ttf-opensans
 freetype2
-
 # Printing Support
 cups
 cups-pdf
@@ -429,9 +437,7 @@ python-pip
 python-reportlab
 simple-scan
 system-config-printer
-
 # Calamares make dependencies
-dmidecode
 doxygen
 extra-cmake-modules
 gawk
@@ -460,14 +466,11 @@ qt6-webengine
 qt6
 solid
 yaml-cpp
-
 # Calamares
 calamares
 ckbcomp
 mkinitcpio-openswap
 python313
-
 # AUR
 #downgrade
 #trizen
-
