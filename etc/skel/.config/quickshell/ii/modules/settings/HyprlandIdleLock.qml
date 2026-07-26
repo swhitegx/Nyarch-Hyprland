@@ -7,12 +7,9 @@ import qs.modules.common.widgets
 ContentPage {
     forceWidth: true
 
-    // ── Hypridle timeouts ──
     ContentSection {
         icon: "timer"
         title: Translation.tr("Idle timeouts")
-        tooltip: Translation.tr("Timeouts are in seconds. Set to 0 to disable.")
-
         ConfigSpinBox {
             icon: "lock"
             text: Translation.tr("Lock after (s)")
@@ -36,11 +33,9 @@ ContentPage {
         }
     }
 
-    // ── Hyprlock ──
     ContentSection {
         icon: "lock"
         title: Translation.tr("Lock screen")
-
         ConfigRow {
             ConfigSpinBox {
                 icon: "text_fields"
@@ -66,7 +61,6 @@ ContentPage {
         }
     }
 
-    // ── Widget hint ──
     ContentSection {
         icon: "info"
         title: Translation.tr("Note")
@@ -74,7 +68,7 @@ ContentPage {
             Layout.fillWidth: true
             Layout.leftMargin: 10
             color: Appearance.colors.colSubtext
-            text: Translation.tr("For more lock screen styling options (colors, fonts, background), edit hyprlock.conf directly at:\n~/.config/hypr/hyprlock.conf")
+            text: Translation.tr("For more lock screen styling, edit hyprlock.conf at:\n~/.config/hypr/hyprlock.conf")
             wrapMode: Text.WordWrap
         }
     }

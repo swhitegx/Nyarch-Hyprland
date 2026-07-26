@@ -7,15 +7,12 @@ import qs.modules.common.widgets
 ContentPage {
     forceWidth: true
 
-    // ── Rounding ──
     ContentSection {
         icon: "rounded_corner"
         title: Translation.tr("Rounding")
-
         ConfigSpinBox {
             icon: "rounded_corner"
             text: Translation.tr("Rounding radius")
-            tooltip: Translation.tr("Window corner roundness in pixels")
             value: HyprlandConfig.get("decoration:rounding") ?? 18
             from: 0; to: 40; stepSize: 1
             onValueChanged: HyprlandConfig.set("decoration:rounding", value)
@@ -23,18 +20,15 @@ ContentPage {
         ConfigSpinBox {
             icon: "line_curve"
             text: Translation.tr("Rounding power")
-            tooltip: Translation.tr("2 = circle, higher = squircle")
             value: parseFloat(HyprlandConfig.get("decoration:rounding_power") ?? 2.5)
             from: 1; to: 6; stepSize: 0.5
             onValueChanged: HyprlandConfig.set("decoration:rounding_power", value.toFixed(1))
         }
     }
 
-    // ── Opacity ──
     ContentSection {
         icon: "opacity"
         title: Translation.tr("Opacity")
-
         ConfigSlider {
             text: Translation.tr("Active opacity")
             value: parseFloat(HyprlandConfig.get("decoration:active_opacity") ?? 1.0)
@@ -55,15 +49,13 @@ ContentPage {
         }
     }
 
-    // ── Blur ──
     ContentSection {
         icon: "blur_on"
         title: Translation.tr("Blur")
-
         ConfigSwitch {
             buttonIcon: "blur_on"
             text: Translation.tr("Enable blur")
-            checked: HyprlandConfig.get("decoration:blur:enabled") ?? "true" === "true"
+            checked: (HyprlandConfig.get("decoration:blur:enabled") ?? "true") === "true"
             onCheckedChanged: HyprlandConfig.set("decoration:blur:enabled", checked ? "true" : "false")
         }
         ConfigSpinBox {
@@ -101,21 +93,18 @@ ContentPage {
         ConfigSwitch {
             buttonIcon: "blur_linear"
             text: Translation.tr("Blur xray (popups only)")
-            tooltip: Translation.tr("Only blur popup windows instead of full background")
             checked: HyprlandConfig.get("decoration:blur:xray") === "true"
             onCheckedChanged: HyprlandConfig.set("decoration:blur:xray", checked ? "true" : "false")
         }
     }
 
-    // ── Shadow ──
     ContentSection {
         icon: "shadow"
         title: Translation.tr("Shadows")
-
         ConfigSwitch {
             buttonIcon: "shadow"
             text: Translation.tr("Enable shadows")
-            checked: HyprlandConfig.get("decoration:shadow:enabled") ?? "true" === "true"
+            checked: (HyprlandConfig.get("decoration:shadow:enabled") ?? "true") === "true"
             onCheckedChanged: HyprlandConfig.set("decoration:shadow:enabled", checked ? "true" : "false")
         }
         ConfigSpinBox {
@@ -134,11 +123,9 @@ ContentPage {
         }
     }
 
-    // ── Dim ──
     ContentSection {
         icon: "dark_mode"
         title: Translation.tr("Dim")
-
         ConfigSwitch {
             buttonIcon: "dark_mode"
             text: Translation.tr("Dim inactive windows")

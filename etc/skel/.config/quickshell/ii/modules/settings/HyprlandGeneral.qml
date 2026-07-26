@@ -31,14 +31,12 @@ ContentPage {
         ConfigSpinBox {
             icon: "stacks"
             text: Translation.tr("Gaps Workspaces")
-            tooltip: Translation.tr("Extra gaps between workspaces, stacks with gaps_out")
             value: HyprlandConfig.get("general:gaps_workspaces") ?? 50
             from: 0; to: 200; stepSize: 5
             onValueChanged: HyprlandConfig.set("general:gaps_workspaces", value)
         }
     }
 
-    // ── Borders ──
     ContentSection {
         icon: "border_style"
         title: Translation.tr("Borders")
@@ -46,7 +44,6 @@ ContentPage {
         ConfigSpinBox {
             icon: "border_all"
             text: Translation.tr("Border Size")
-            tooltip: Translation.tr("Width of window borders in pixels")
             value: HyprlandConfig.get("general:border_size") ?? 1
             from: 0; to: 20; stepSize: 1
             onValueChanged: HyprlandConfig.set("general:border_size", value)
@@ -60,13 +57,11 @@ ContentPage {
         ConfigSwitch {
             buttonIcon: "open_with"
             text: Translation.tr("Resize on border")
-            tooltip: Translation.tr("Click and drag on borders to resize windows")
             checked: HyprlandConfig.get("general:resize_on_border") === "true"
             onCheckedChanged: HyprlandConfig.set("general:resize_on_border", checked ? "true" : "false")
         }
     }
 
-    // ── Layout ──
     ContentSection {
         icon: "grid_on"
         title: Translation.tr("Layout")
@@ -79,47 +74,38 @@ ContentPage {
                 { icon: "view_column", value: "master", displayName: Translation.tr("Master") },
             ]
         }
-
         ConfigSwitch {
             buttonIcon: "call_split"
             text: Translation.tr("Preserve split")
-            tooltip: Translation.tr("Keep split direction when opening new windows")
             checked: HyprlandConfig.get("dwindle:preserve_split") !== "false"
             onCheckedChanged: HyprlandConfig.set("dwindle:preserve_split", checked ? "true" : "false")
         }
     }
 
-    // ── Cursor ──
     ContentSection {
         icon: "mouse"
         title: Translation.tr("Cursor")
-
         ConfigSwitch {
             buttonIcon: "center_focus_weak"
             text: Translation.tr("No focus fallback")
-            tooltip: Translation.tr("Don't fall back to next window when moving focus with no window found")
             checked: HyprlandConfig.get("general:no_focus_fallback") === "true"
             onCheckedChanged: HyprlandConfig.set("general:no_focus_fallback", checked ? "true" : "false")
         }
         ConfigSpinBox {
             icon: "search"
             text: Translation.tr("Zoom factor")
-            tooltip: Translation.tr("Cursor zoom level")
             value: parseFloat(HyprlandConfig.get("cursor:zoom_factor") ?? 1)
             from: 1; to: 5; stepSize: 0.5
             onValueChanged: HyprlandConfig.set("cursor:zoom_factor", value.toFixed(1))
         }
     }
 
-    // ── Tearing ──
     ContentSection {
         icon: "flash_on"
         title: Translation.tr("Tearing")
-
         ConfigSwitch {
             buttonIcon: "flash_on"
             text: Translation.tr("Allow Tearing")
-            tooltip: Translation.tr("Master switch for screen tearing support")
             checked: HyprlandConfig.get("general:allow_tearing") === "true"
             onCheckedChanged: HyprlandConfig.set("general:allow_tearing", checked ? "true" : "false")
         }

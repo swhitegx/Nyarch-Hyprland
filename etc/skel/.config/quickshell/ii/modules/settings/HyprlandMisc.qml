@@ -7,11 +7,9 @@ import qs.modules.common.widgets
 ContentPage {
     forceWidth: true
 
-    // ── VRR ──
     ContentSection {
         icon: "speed"
         title: Translation.tr("Variable Refresh Rate")
-
         ConfigSelectionArray {
             currentValue: (HyprlandConfig.get("misc:vrr") ?? "0").toString()
             onSelected: newValue => HyprlandConfig.set("misc:vrr", newValue)
@@ -23,11 +21,9 @@ ContentPage {
         }
     }
 
-    // ── Animations toggle ──
     ContentSection {
         icon: "animation"
         title: Translation.tr("Animations")
-
         ConfigSwitch {
             buttonIcon: "animation"
             text: Translation.tr("Enable animations")
@@ -48,39 +44,31 @@ ContentPage {
         }
     }
 
-    // ── Window swallowing ──
     ContentSection {
         icon: "swipe"
         title: Translation.tr("Window swallowing")
-
         ConfigSwitch {
             buttonIcon: "swipe"
             text: Translation.tr("Enable swallow")
-            tooltip: Translation.tr("Terminal windows that launch apps get replaced")
             checked: HyprlandConfig.get("misc:enable_swallow") === "true"
             onCheckedChanged: HyprlandConfig.set("misc:enable_swallow", checked ? "true" : "false")
         }
     }
 
-    // ── XWayland ──
     ContentSection {
         icon: "apps"
         title: Translation.tr("XWayland")
-
         ConfigSwitch {
             buttonIcon: "apps"
             text: Translation.tr("Force zero scaling")
-            tooltip: Translation.tr("Disable XWayland scaling to avoid blurry X11 apps")
             checked: HyprlandConfig.get("xwayland:force_zero_scaling") === "true"
             onCheckedChanged: HyprlandConfig.set("xwayland:force_zero_scaling", checked ? "true" : "false")
         }
     }
 
-    // ── DPMS ──
     ContentSection {
         icon: "power"
         title: Translation.tr("Display power management")
-
         ConfigSwitch {
             buttonIcon: "power"
             text: Translation.tr("Mouse move wakes display")
@@ -95,11 +83,9 @@ ContentPage {
         }
     }
 
-    // ── Misc toggles ──
     ContentSection {
         icon: "settings"
         title: Translation.tr("Other")
-
         ConfigSwitch {
             buttonIcon: "logo"
             text: Translation.tr("Show Hyprland logo")

@@ -41,6 +41,12 @@ Singleton {
         ])
     }
     
+    function get(key: string) {
+        if (key in lastSetValues)
+            return lastSetValues[key]
+        return null
+    }
+    
     function reset(key: string) {
         delete lastSetValues[key]
         Quickshell.execDetached(["bash", "-c", //
@@ -59,17 +65,6 @@ Singleton {
         Quickshell.execDetached(["bash", "-c", //
             `${root.configuratorScriptPath} --file ${root.shellOverridesPath} ${args}` //
         ])
-    }
-
-    /**
-     * Get a cached config value.
-     * Returns the value last set via HyprlandConfig.set(), or null if unset.
-     * For a complete read-back, hyprset reads the config files directly.
-     */
-    function get(key: string) {
-        if (key in lastSetValues)
-            return lastSetValues[key]
-        return null
     }
 
     Connections {
