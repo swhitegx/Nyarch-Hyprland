@@ -4,3 +4,4 @@
 systemctl enable bluetooth
 systemctl enable sddm
 systemctl enable NetworkManager
+systemctl enable plymouth-start

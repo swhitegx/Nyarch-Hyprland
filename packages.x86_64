@@ -267,6 +267,7 @@ cantarell-fonts
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
+ttf-nerd-fonts-symbols
 ttf-opensans
 freetype2
 # Printing Support
