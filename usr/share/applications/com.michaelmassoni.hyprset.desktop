@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Hyprland Settings
+Comment=Configure your Hyprland desktop — gaps, binds, animations, and more
+Exec=hyprset
+Icon=com.michaelmassoni.hyprset
+Type=Application
+Terminal=false
+Categories=Settings;GTK;System;X-Hyprland;
+Keywords=Hyprland;Configuration;Settings;Wayland;
+StartupNotify=true

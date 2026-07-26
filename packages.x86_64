@@ -79,6 +79,13 @@ qt6-shadertools
 qt6-serialport
 qt6-wayland
 qt6-websockets
+
+# hyprset — GTK4/LibAdwaita Hyprland settings app
+python-gobject
+gtk4
+libadwaita
+python-pip
+
 alsa-utils
 amd-ucode
 arch-install-scripts

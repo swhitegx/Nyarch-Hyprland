@@ -1,0 +1,337 @@
+from .app_pages import (
+    PAGES_DICT,
+    PAGES_LIST,
+    decoration_page,
+)
+import sys
+import os
+from .imports import Adw, Gdk, Gio, Gtk
+from .widgets import Icon, ToastOverlay, MyBezierEditorWindow
+from .config_manager import get_config_summary, check_config_files
+
+
+class ApplicationWindow(Adw.ApplicationWindow):
+    def __init__(self, app: Adw.Application):
+        super().__init__(application=app)
+        self.set_title("Hyprland Settings")
+        MyBezierEditorWindow.set_transient_for(self)
+
+        self.root = Adw.OverlaySplitView.new()
+        self.breakpoint = Adw.Breakpoint.new(
+            Adw.BreakpointCondition.parse('max-width: 900px')  # type: ignore
+        )
+        self.set_default_size(1100, 800)
+        self.set_content(self.root)
+        self.add_breakpoint(self.breakpoint)
+        self.breakpoint.add_setter(
+            self.root, 'collapsed', True  # type: ignore
+        )
+
+        # Main Content
+        self.main_content = Adw.ToolbarView.new()
+        self.main_content_navigation_page = Adw.NavigationPage.new(
+            self.main_content, 'General'
+        )
+
+        self.main_content_top_bar = Adw.HeaderBar.new()
+        self.main_content_top_bar_title = Adw.WindowTitle.new(
+            'General', 'Gaps, borders, colors, cursor and other settings.'
+        )
+
+        self.main_content.add_top_bar(self.main_content_top_bar)
+        self.main_content_top_bar.set_title_widget(
+            self.main_content_top_bar_title
+        )
+        self.main_content_view_stack = Adw.ViewStack.new()
+
+        self.toast_overlay = ToastOverlay
+        self.toast_overlay.instance.set_child(self.main_content_view_stack)
+        self.main_content.set_content(self.toast_overlay.instance)
+
+        # Sidebar
+        self.sidebar = Adw.ToolbarView()
+        self.sidebar.add_css_class('list-box-scroll')
+        self.sidebar_navigation_page = Adw.NavigationPage.new(
+            self.sidebar, 'Settings'
+        )
+        self.sidebar_navigation_page.add_css_class('sidebar')
+        self.sidebar_top_bar = Adw.HeaderBar.new()
+        self.sidebar.add_top_bar(self.sidebar_top_bar)
+        self.sidebar_scrolled_window = Gtk.ScrolledWindow.new()
+        self.sidebar_listbox = Gtk.ListBox.new()
+        self.sidebar_scrolled_window.set_child(self.sidebar_listbox)
+        self.sidebar.set_content(self.sidebar_scrolled_window)
+
+        # Sidebar Stuff
+        for item in PAGES_LIST:
+            if item.get('separator'):
+                tmp_rowbox = Gtk.ListBoxRow.new()
+                tmp_rowbox.set_can_focus(False)
+                tmp_rowbox.set_activatable(False)
+                tmp_rowbox.set_selectable(False)
+                tmp_rowbox.set_sensitive(False)
+                tmp_rowbox.set_child(
+                    Gtk.Separator.new(Gtk.Orientation.HORIZONTAL)
+                )
+
+            else:
+                tmp_grid = Gtk.Grid.new()
+                tmp_grid.set_column_spacing(12)
+                tmp_grid.set_valign(Gtk.Align.CENTER)
+                tmp_grid.set_vexpand(True)
+
+                tmp_rowbox = Gtk.ListBoxRow.new()
+                tmp_rowbox.add_css_class('list-box-row')
+                setattr(tmp_rowbox, 'title', item['label'])
+                setattr(tmp_rowbox, 'desc', item['desc'])
+
+                label = Gtk.Label.new(item['label'])
+                tmp_grid.attach(Icon(item['icon']), 0, 0, 1, 1)
+                tmp_grid.attach(label, 1, 0, 1, 1)
+                tmp_rowbox.set_child(tmp_grid)
+
+            self.sidebar_listbox.append(tmp_rowbox)
+
+        self.root.set_content(self.main_content_navigation_page)
+        self.root.set_sidebar(self.sidebar_navigation_page)
+
+        self.sidebar_listbox.connect('row-activated', self.on_row_activated)
+
+        shortcut_controller = Gtk.ShortcutController.new()
+        # Add ctrl+s shortcut
+        shortcut_controller.add_shortcut(
+            Gtk.Shortcut.new(
+                Gtk.ShortcutTrigger.parse_string('<Control>s'),
+                Gtk.CallbackAction.new(self.toast_overlay.save_changes),
+            )
+        )
+
+        self.root.add_controller(shortcut_controller)
+        
+        self.sidebar_listbox.unselect_all()
+        
+        # Check and log config file status
+        try:
+            config_status = check_config_files()
+            has_lua = os.path.exists(os.path.expanduser("~/.config/hypr/hyprland.lua"))
+            
+            if has_lua and not os.path.exists(os.path.expanduser("~/.config/hypr/hyprland.conf")):
+                # Lua config detected, offer to create supplementary conf
+                def on_lua_dialog(d, resp):
+                    if resp == "create_conf":
+                        conf_path = os.path.expanduser("~/.config/hypr/hyprland.conf")
+                        os.makedirs(os.path.dirname(conf_path), exist_ok=True)
+                        with open(conf_path, "w") as f:
+                            f.write("# Supplementary hyprland.conf — managed by hyprset\n")
+                            f.write("# Your main config is in hyprland.lua\n")
+                            f.write("# Settings here may override Lua defaults\n")
+                        toast = Adw.Toast.new("Created supplementary hyprland.conf — reload to use")
+                        self.toast_overlay.instance.add_toast(toast)
+                    elif resp == "quit":
+                        pass
+                    d.close()
+                
+                lua_dialog = Adw.MessageDialog(
+                    transient_for=self,
+                    heading="Lua Config Detected",
+                    body="Looks like you're using the illogical-impulse dotfiles with a Lua-based config (hyprland.lua).\n\nHyprset works best with the standard conf format. You can create a supplementary hyprland.conf for hyprset to manage alongside your Lua setup.",
+                )
+                lua_dialog.add_response("quit", "Cancel")
+                lua_dialog.add_response("create_conf", "Create hyprland.conf")
+                lua_dialog.set_response_appearance("create_conf", Adw.ResponseAppearance.SUGGESTED)
+                lua_dialog.connect("response", on_lua_dialog)
+                lua_dialog.present()
+                    
+            elif not config_status['main_exists']:
+                # No config found! Prompt user
+                def on_dialog_response(dialog, response):
+                    if response == 'download':
+                        from .config_manager import download_default_config
+                        if download_default_config():
+                            success_dialog = Adw.MessageDialog(
+                                transient_for=self,
+                                heading="Download Successful",
+                                body="The default Hyprland configuration has been installed.\\nPlease restart the application to load the new settings.",
+                            )
+                            success_dialog.add_response("ok", "Quit")
+                            success_dialog.connect("response", lambda d, r: self.close())
+                            success_dialog.present()
+                        else:
+                            err_dialog = Adw.MessageDialog(
+                                transient_for=self,
+                                heading="Download Failed",
+                                body="Could not download the default configuration.",
+                            )
+                            err_dialog.add_response("ok", "OK")
+                            err_dialog.present()
+                    elif response == 'quit':
+                        self.close()
+                    dialog.close()
+
+                dialog = Adw.MessageDialog(
+                    transient_for=self,
+                    heading="No Config Found",
+                    body="No Hyprland configuration file was found.\\nWould you like to download and install the default configuration?",
+                )
+                dialog.add_response("quit", "Quit")
+                dialog.add_response("download", "Download & Install")
+                dialog.set_response_appearance("download", Adw.ResponseAppearance.SUGGESTED)
+                dialog.connect("response", on_dialog_response)
+                dialog.present()
+                
+            elif config_status['missing_files']:
+                print(f"Warning: Missing config files: {config_status['missing_files']}", file=sys.stderr)
+        except Exception as e:
+            print(f"Warning: Could not check config files: {e}", file=sys.stderr)
+        
+        # Show window FIRST, then load pages (so user sees something immediately)
+        self.set_visible(True)
+        # Add custom icons path
+        display = Gdk.Display.get_default()
+        icon_theme = Gtk.IconTheme.get_for_display(display)
+        
+        # Calculate absolute path to icons directory
+        # app.py is in app/modules/app.py
+        # icons are in app/icons
+        base_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        icons_path = os.path.join(base_path, "app", "icons")
+        if os.path.exists(icons_path):
+            icon_theme.add_search_path(icons_path)
+            
+        self.present()
+        self.set_focus()
+        
+        # Add pages after window is shown (this might take time due to HyprData access)
+        # Use GLib.idle_add to do this asynchronously so window appears immediately
+        from gi.repository import GLib
+        def load_pages():
+            try:
+                self.add_pages()
+            except Exception as e:
+                print(f"Error adding pages: {e}", file=sys.stderr)
+                import traceback
+                traceback.print_exc()
+        GLib.idle_add(load_pages)
+
+    def on_row_activated(self, _, sidebar_rowbox: Gtk.ListBoxRow):
+        page_name = getattr(sidebar_rowbox, 'title')
+        
+        # Update UI immediately
+        self.main_content_top_bar_title.set_title(page_name)
+        self.main_content_top_bar_title.set_subtitle(
+            getattr(sidebar_rowbox, 'desc')
+        )
+        
+        # Check if page is already loaded
+        existing = self.main_content_view_stack.get_child_by_name(page_name)
+        if existing:
+            # Page already loaded, just switch to it
+            match self.main_content_view_stack.get_visible_child_name().lower():
+                case 'general':
+                    pass
+                case 'decoration':
+                    decoration_page.pop_to_tag('index-page')
+                case _:
+                    pass
+            self.main_content_view_stack.set_visible_child_name(page_name)
+            return
+        
+        # Page not loaded yet - load it asynchronously to avoid freezing UI
+        from gi.repository import GLib
+        def load_and_switch():
+            try:
+                page = self.get_or_load_page(page_name)
+                if page is None:
+                    print(f"Failed to load page '{page_name}'", file=sys.stderr)
+                    return False
+                
+                # Switch to the page after it's loaded
+                match self.main_content_view_stack.get_visible_child_name().lower():
+                    case 'general':
+                        pass
+                    case 'decoration':
+                        decoration_page.pop_to_tag('index-page')
+                    case _:
+                        pass
+                self.main_content_view_stack.set_visible_child_name(page_name)
+                return False  # Don't repeat
+            except Exception as e:
+                print(f"Error loading page '{page_name}': {e}", file=sys.stderr)
+                import traceback
+                traceback.print_exc(file=sys.stderr)
+                return False  # Don't repeat
+        
+        # Load page asynchronously so UI doesn't freeze
+        GLib.idle_add(load_and_switch)
+
+    def add_pages(self):
+        # Only add the General page initially - others will be loaded on demand
+        # This speeds up startup when Hyprland isn't running
+        try:
+            general_page = PAGES_DICT['General']()
+            self.main_content_view_stack.add_named(general_page, 'General')
+        except Exception as e:
+            print(f"Warning: Could not add page 'General': {e}", file=sys.stderr)
+            import traceback
+            traceback.print_exc()
+    
+    def get_or_load_page(self, name: str):
+        """Get a page, loading it if it hasn't been loaded yet."""
+        # Check if page is already in the stack
+        existing = self.main_content_view_stack.get_child_by_name(name)
+        if existing:
+            return existing
+        
+        # Load the page lazily
+        if name in PAGES_DICT:
+            try:
+                page_getter = PAGES_DICT[name]
+                page = page_getter()
+                self.main_content_view_stack.add_named(page, name)
+                return page
+            except Exception as e:
+                print(f"Error: Could not load page '{name}': {e}", file=sys.stderr)
+                import traceback
+                traceback.print_exc(file=sys.stderr)
+                # Return None to indicate failure, but don't crash the app
+                return None
+        return None
+
+
+class Application(Adw.Application):
+    def __init__(self) -> None:
+        super().__init__()
+        self.window = None
+        self.set_application_id('com.michaelmassoni.hyprset')
+        self.set_flags(Gio.ApplicationFlags.FLAGS_NONE)
+        
+        # Explicitly use AdwStyleManager to avoid GTK warning
+        self.style_manager = Adw.StyleManager.get_default()
+        self.style_manager.set_color_scheme(Adw.ColorScheme.DEFAULT)
+        
+        self.load_css()
+
+    def load_css(self) -> None:
+        css_provider = Gtk.CssProvider()
+        css_provider.load_from_path(f'{__file__[:-15]}/style.css')
+
+        return Gtk.StyleContext.add_provider_for_display(  # type: ignore
+            Gdk.Display.get_default(),
+            css_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
+        )
+
+    def do_activate(self) -> None:
+        if not self.window:
+            try:
+                self.window = ApplicationWindow(self)
+            except Exception as e:
+                print(f"Error creating window: {e}", file=sys.stderr)
+                import traceback
+                traceback.print_exc(file=sys.stderr)
+                return
+        self.window.present()
+        self.window.set_focus()
+
+
+MyApplication = Application()
