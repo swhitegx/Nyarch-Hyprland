@@ -1,0 +1,174 @@
+# general settings
+title-text: ""
+desktop-image: "background.png"
+desktop-color: "#000000"
+terminal-font: "Terminus (TTF) Regular 16"
+terminal-left: "0"
+terminal-top: "0"
+terminal-width: "100%"
+terminal-height: "100%"
+terminal-border: "0"
+
+
+# boot menu
++boot_menu {
+  left = 15%
+  width = 40%
+  top = 30%
+  height = 40%
+  item_font = "Rajdhani Regular 24"
+  item_color = "#5df8fd"
+  selected_item_font = "Rajdhani Regular 24"
+  selected_item_color = "#80FFCA"
+  icon_width = 24
+  icon_height = 24
+  item_height = 35
+  item_padding = 40 #40
+  item_icon_space = 20
+  item_spacing = 5
+  menu_pixmap_style = "no_*.png"
+  selected_item_pixmap_style = "highlight_*.png"
+}
+
+# If image appears deformed or not to your liking consider editing following image element / component.
+# Value can be used in this formats:
+#    x	   Value in pixels
+#    p%	   Percentage
+#    p%+x  Mixture of both
+# For more information consult GRUB Theme file format documentation.
+
++image {
+  # EDIT HERE
+  file = "NyarchChan.png"
+  left = 61%  # Distance from left edge of the screen to start of the image. If image appears stretch consider increasing this value and vice versa
+  top = 0%  # Distance from top edge of the screen to top of the image
+  height = 100% # Height of the image.
+# width = 754 # You may also use width property to define image width
+}
+
+# Following values work for my 1920x1080 screen
+#+image {
+#  file = "NyarchChan.png"
+#  top = 0
+#  height = 100%
+#  left = 100%-754
+#}
+
+# Show progress
++ progress_bar {
+  left = 0%
+  top = 100%-30
+  width = 100%
+  height = 30
+  id = "__timeout__"
+  text= "@TIMEOUT_NOTIFICATION_LONG@"
+  font = "Rajdhani Regular 24"
+  text_color = "#fb542b"
+  fg_color = "#5df8fd"
+  bg_color = "#ee5650"
+  highlight_style = "progress_*.png"
+}
+
+# grub title
++ label {
+	font = "Rajdhani Regular 32"
+	left = 0
+	top = 8
+	width = 100%
+	align = "center"
+	color = "#2bcdfb"
+	text = "GR.U.B."
+}
+
++ label {
+	font = "Rajdhani Regular 24"
+	left = 0
+	top = 45
+	width = 100%
+	align = "center"
+	color = "#2bcdfb"
+	text = "GRand Unified Bootloader"
+}
+
+# decorative text
++ label {
+	font = "Rajdhani Regular 18"
+	left = 10
+	top = 50
+	width = 100%
+	color = "#1793d1"
+	text = "╔════════════════╗"
+}
+
++ label {
+	font = "Rajdhani Regular 18"
+	left = 10
+	top = 68
+	width = 100%
+	color = "#1793d1"
+	text = "║     [Menu 0]     ║"
+}
+
++ label {
+	font = "Rajdhani Regular 18"
+	left = 10
+	top = 86
+	width = 100%
+	color = "#1793d1"
+	text = "╟┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄╢"
+}
+
++ label {
+	font = "Rajdhani Regular 18"
+	left = 10
+	top = 104
+	width = 100%
+	color = "#1793d1"
+	text = "║ [>>] select OS ║"
+}
++ label {
+	font = "Rajdhani Regular 18"
+	left = 10
+	top = 122
+	width = 100%
+	color = "#1793d1"
+	text = "╙─┈  ┉ ┅━━ ┄┄┈┈┈━╜"
+}
+
+
+# controls
++ label {
+	font = "Rajdhani Regular 24"
+	left = 8
+	top = 100%-136
+	width = 100%
+	color = "#1793d1"
+	text = " ↑↓ - NAVIGATE"
+}
+
++ label {
+	font = "Rajdhani Regular 24"
+	left = 8
+	top = 100%-112
+	width = 100%
+	color = "#1793d1"
+	text = "<─┘ - CONFIRM"
+}
+
++ label {
+	font = "Rajdhani Regular 24"
+	left = 8
+	top = 100%-86
+	width = 100%
+	color = "#1793d1"
+	text = " E  - OPTIONS"
+}
+
++ label {
+	font = "Rajdhani Regular 24"
+	left = 8
+	top = 100%-60
+	width = 100%
+	color = "#1793d1"
+	text = " C  - COMMAND LINE"
+}
