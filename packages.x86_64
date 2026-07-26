@@ -264,6 +264,8 @@ ttf-dejavu
 ttf-liberation
 cantarell-fonts
 noto-fonts
+noto-fonts-cjk
+noto-fonts-emoji
 ttf-opensans
 freetype2
 # Printing Support

@@ -6,6 +6,10 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("qs -c $qsConfig")
     hl.exec_cmd("$HOME/.config/hypr/custom/scripts/__restore_video_wallpaper.sh")
 
+    -- Fallback wallpaper if quickshell isn't handling it
+    hl.exec_cmd("hyprctl hyprpaper preload '~/.config/hypr/wallpapers/default.jpg'")
+    hl.exec_cmd("hyprctl hyprpaper wallpaper ',~/.config/hypr/wallpapers/default.jpg'")
+
     -- Core components (authentication, lock screen, notification daemon)
     hl.exec_cmd("gnome-keyring-daemon --start --components=secrets")
     hl.exec_cmd("hypridle")
@@ -22,4 +26,9 @@ hl.on("hyprland.start", function ()
 
     -- Cursor
     hl.exec_cmd("hyprctl setcursor Bibata-Modern-Classic 24")
+
+    -- Live ISO: start calamares installer for the live user
+    if os.getenv("USER") == "live" then
+        hl.exec_cmd("sleep 3 && sudo -E calamares")
+    end
 end)
