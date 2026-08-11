@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# hyprset — GTK4/LibAdwaita Hyprland settings app
+# Installed as part of Nyarch-Hyprland dotfiles
+
+# Add vendored hyprparser to Python path
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+HYPRSET_DIR="/usr/share/hyprset"
+
+if [ ! -d "$HYPRSET_DIR" ]; then
+    # Try relative to script for development
+    HYPRSET_DIR="$(dirname "$SCRIPT_DIR")/share/hyprset"
+fi
+
+export PYTHONPATH="$HYPRSET_DIR/vendor:$PYTHONPATH"
+
+exec python3 "$HYPRSET_DIR/app/__main__.py" "$@"

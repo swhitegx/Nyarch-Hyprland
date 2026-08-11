@@ -45,7 +45,8 @@ GRUB_DISABLE_RECOVERY=true
 
 # Uncomment one of them for the gfx desired, a image background or a gfxtheme
 #GRUB_BACKGROUND="/path/to/wallpaper"
-#GRUB_THEME="/path/to/gfxtheme"
+# Uncomment to use the graphical theme
+GRUB_THEME="/usr/share/grub/themes/ArchChan-theme/theme.txt"
 
 # Uncomment to get a beep at GRUB start
 #GRUB_INIT_TUNE="480 440 1"

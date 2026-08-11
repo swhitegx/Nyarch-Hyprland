@@ -1,0 +1,5 @@
+## Nyarch-Hyprland ISO — CachyOS repository mirrorlist
+## Provides quickshell and other CachyOS-optimized packages
+Server = https://mirror.nju.edu.cn/cachyos/repo/$arch/$repo
+Server = https://mirrors.ustc.edu.cn/cachyos/repo/$arch/$repo
+Server = https://at.cachyos.org/repo/$arch/$repo
